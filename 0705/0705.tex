@@ -1,0 +1,689 @@
+\documentclass[a4paper,1pt]{jsarticle}
+
+
+% 数式
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+% 画像
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\usepackage[dvipdfmx]{xcolor}
+\usepackage{float}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+
+
+%テキストの表示領域の調節
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-40truemm}
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-45truemm}
+
+%余白の調節
+\setlength{\topmargin}{-10.4truemm}
+\setlength{\evensidemargin}{-5.4truemm}
+\setlength{\oddsidemargin}{-5.4truemm}
+\setlength{\headheight}{17pt}
+\setlength{\headsep}{10mm}
+\addtolength{\headsep}{-17pt}
+\setlength{\footskip}{5mm}
+
+
+\begin{document}
+\section{目的}
+小球落下法により，高粘度の液体の粘性係数を求めること.\\
+
+
+
+
+\section{理論}
+
+ \subsection*{算術平均の確率誤差}
+
+ \begin{eqnarray}
+  \label{kakuritugosa}
+  r_a=\pm0.6745\sqrt{\dfrac{[v^2]}{n(n-1)}}
+\end{eqnarray}
+
+\begin{eqnarray}
+  \label{kaisekizansa}
+  [v^2]=\sum_{i=1}^n v_i^2=\sum_{i=1}^n(q_i-\bar{q})^2
+\end{eqnarray}
+
+\begin{eqnarray}
+  \label{kaisekizansa}
+  Q=F(q_i,q_2,...)
+\end{eqnarray}
+
+
+  $Q:,q_1,q_2,\dots\qquad の誤差をそれぞれ\qquad r:r_1,r_2,...\qquad として，$
+
+  \begin{eqnarray}
+    \label{kaisekizansa}
+    r^2=\left(\frac{\partial F}{\partial q_1}r_1\right)^2+\left(\frac{\partial F}{\partial q_2}r_2\right)^2+\dots
+  \end{eqnarray}
+
+
+  
+
+
+  $q_i:測定値,\; n:測定回数,\; \bar{q}:平均値$\\\\
+
+
+
+  \subsection*{価値平均}
+  確率誤差の違う測定値を平均する場合．\\
+  同一物理量を種々の方法で測定して，$X_i \pm E_i (i=1,2,3, \dots)$を得た時，\\
+  その最確値$X_0$確率誤差$E_0$は次のようにして求められる．\\
+
+  $誤差の分布は，f(x)=\dfrac{h}{\sqrt{\pi}}exp(-h^2x^2)で表される．h_i=\dfrac{1}{E_i},x_i=X_0-X_iとすると$\\
+
+  $x_iの確率は，f(x_i)=\dfrac{h_i}{\sqrt{\pi}}exp(-h_i^2(X_0-X_i)^2)$\\
+
+  $したがって，これらの誤差が同時に起こる確率は，f(x_1)\cdot f(x_2)\cdot \dots f(x_n)=\dfrac{h_1h_2\dots h_n}{\sqrt{\pi^n}}exp(-\sum_{i}^{n}   h_i^2(X_0-X_i)^2).$\\
+
+  $これが最大となるには，\sum_{i}^{n} h_i^2(X_0-X_i)^2が最小となるので， $\\
+
+  $\dfrac{\partial \sum_{i}^{n} h_i^2(X_0-X_i)^2}{\partial X_0}=0\Longrightarrow \dfrac{\partial (h_1^2(X_0-X_1)^2+h_2^2(X_0-X_2)^2+\dots +h_n^2(X_0-X_n)^2)}{\partial X_0}=0$\\
+
+  $\Longleftrightarrow 2h_1^2(X_0-X_1)+2h_2^2(X_0-X_2)+\dots +2h_n^2(X_0-X_n)=0$\\
+
+  $\Longleftrightarrow  (h_1^2+h_2^2+\dots +h_n^2)X_0-(h_1^2X_1+h_2^2X_2+\dots h_n^2X_n)=0 $\\
+
+  $\therefore X_0=\dfrac{h_1^2X_1+h_2^2X_2+\dots h_n^2X_n}{h_1^2+h_2^2+\dots +h_n^2}=\dfrac{\sum_{i}^{n} h_i^2X_i }{\sum_{i}^{n} h_i^2}$\\
+
+  $h_i=\dfrac{1}{E_i}より，最確値X_0は，$\\
+
+  \begin{eqnarray}
+    \label{katiheikin}
+    X_0=\dfrac{\sum_{i}^{n} \left(\dfrac{X_i}{E_i^2}\right) }{\sum_{i}^{n} \left(\dfrac{1}{E_i^2}\right)}
+  \end{eqnarray}
+
+  となる．\\
+
+  $また，確率誤差E_0は誤差伝播の法則を用いて$\\
+
+  $E_0^2=\sum_{i}^{n}\left(\dfrac{\partial X_0}{\partial X_i}E_i\right)^2=\left(\dfrac{\partial X_0}{\partial X_1}E_1\right)^2+\left(\dfrac{\partial X_0}{\partial X_2}E_2\right)^2+\dots +\left(\dfrac{\partial X_0}{\partial X_n}E_n\right)^2  $\\\\
+
+  $=\left(\dfrac{\left(\dfrac{1}{E_1^2}\right) }{\sum_{i}^{n} \left(\dfrac{1}{E_i^2}\right)}E_1\right)^2+\left(\dfrac{\left(\dfrac{1}{E_2^2}\right) }{\sum_{i}^{n} \left(\dfrac{1}{E_i^2}\right)}E_2\right)^2+\dots +\left(\dfrac{\left(\dfrac{1}{E_n^2}\right) }{\sum_{i}^{n} \left(\dfrac{1}{E_i^2}\right)}E_n\right)^2$\\\\
+
+  $=\dfrac{\sum_{i}^{n} \left(\dfrac{1}{E_i^2}\right) }{\left(\sum_{i}^{n} \left(\dfrac{1}{E_i^2}\right)\right)^2}=\dfrac{1}{\sum_{i}^{n} \left(\dfrac{1}{E_i^2}\right)}$\\
+
+  したがって，確率誤差$E_0$は，\\
+
+  \begin{eqnarray}
+    \label{katiheikingosa}
+    E_0=\pm\sqrt{\dfrac{1}{\sum_{i}^{n} \left(\dfrac{1}{E_i^2}\right)}} 
+  \end{eqnarray}
+
+\subsection*{粘性係数の導出}
+$粘性係数\eta ，密度\rho なる液体中を半径r，密度\sigma なる球が速度\nu で運動する場合，$\\
+
+$球の受ける粘性抵抗力(上向き)fは\bold{stokes}の式に従い，r,\eta,\nu に比例する．$\\
+
+$即ち，f=6\pi r\eta \nu となる．今，液体中を球が重力によって落下するときの力(下向き)f'は，$\\
+
+$浮力を考慮すればf'=\dfrac{4}{3}\pi r^3(\sigma -\rho )g (g:重力加速度)となり，球が終速度で落下している時は$\\
+
+$これらの2力は釣り合っている．即ち6\pi r\eta \nu =\dfrac{4}{3}\pi r^3(\sigma -\rho )gとなる．$\\
+
+$したがって粘性係数\eta は，$\\
+
+\begin{eqnarray}
+  \label{nensei1}
+ \eta =\dfrac{2}{9}g\dfrac{r^2(\sigma -\rho  )}{\nu }\qquad\left[\dfrac{g}{cm\cdot sec}\right]
+\end{eqnarray}\\
+
+$なお，正確に粘性係数を求めるためには，管壁および管端による補正を入れるべきで，管の半径をR,測定距離をHとすれば，補正後の粘性係数\eta 'の式は以下となる．$\\
+
+\begin{eqnarray}
+  \label{nensei2}
+ \eta' =\dfrac{2}{9}g\dfrac{r^2(\sigma -\rho  )}{\nu \left(1+2.4\dfrac{r}{R}\right)\left(1+3.3\dfrac{r}{H}\right)}\approx \dfrac{2}{9}g\dfrac{r^2(\sigma -\rho  )}{\nu }\left(1-2.4\dfrac{r}{R}-3.3\dfrac{r}{H}\right)\qquad\left[\dfrac{g}{cm\cdot sec}\right]
+\end{eqnarray}\\
+
+
+
+
+\section{実験方法}
+
+
+
+\begin{enumerate}
+  \item 小球5個の各々の直径D=2rを5回ずつシックスネスゲージで測定し，小球を区別するために番号付けをする．例えば$\bold{D_1\dots D_5}$とする．ゲージは目分量を含むと$\bold{0.000mm}$まで読める．外側の目盛板の長針が一周すると$\bold{1.000mm}$となり内側の目盛板の短針が「1」を指す．例えば小球の直径Dが約1mmの場合，零点は$\bold{0.\ast \ast \ast mm}$となり小球を挟むと$\bold{1.\ast \ast \ast mm}$となり，小球の直径$\bold{D=1.\ast \ast \ast mm - 0.\ast \ast \ast mm}$となる．必ず内側の目盛板の数値を忘れずに読む．
+  \item 小球をピンセットで挟み，メスシリンダ内の液体試料の液面近くで放ち液中を落下させる．小球が一定速度を得る160mlの目盛り線から40mlの目盛り線を通過する時間をストップウォッチで測定する．
+  \item この小球をネットスプーンですくい上げて同じ測定を1つの小球に対して5度行う．
+  \item 2.と3.を5個の小球につき順次行う．これは半径の異なる小球の落下速度vが異なるためである．
+  \item 時間測定を行った目盛り線の間の距離をノギスで5回測定して，各小球の落下速度$\nu _1\dots \nu _5$を算出する．
+  \item 液体試料に直接$\bold{hydrometer}$を挿入して液体試料の密度$\rho $を求める．この時$\bold{hydrometer}$と管壁との摩擦の影響を除くために$\bold{hydrometer}$を静かに放ち液中を沈下して静止した時の液面の数値を読み，その静止した位置から僅かに$\bold{hydrometer}$を押し沈めて浮上して静止した時の液面の数値とを平均する．これを5セット行う．
+  \item 測定した小球5個をなくさないように濾紙で拭き，5個まとめた質量Mを電子天秤で5回測定する．
+  \item 半径から5個の小球の全体積$V=\dfrac{4}{3}\pi (r_1^3+r_2^3+r_3^3+r_4^3+r_5^3)$を求めて，これで7.で求めた全質量Mを割ると小球の平均密度$\sigma = \dfrac{M}{V}$が求まる．
+  \item 以上の測定より，液体試料の測定中の液温における粘性係数$\eta $は式(1)で求められる．忘れずにアルコール棒温度計で液温を測定しておくこと．
+  \item 各小球ごとに粘性係数$\eta $(最確値と確率誤差)を求めて，5つの粘性係数の$\eta $を価値平均を使って1つの粘性係数$\eta $にする．
+\end{enumerate}
+
+$\divideontimes $小球は測定中紛失しないように細心の注意を払う．\\
+
+
+
+\clearpage
+
+
+\section{データ処理・結果}
+
+
+
+\begin{table}[H]
+  \caption{$r_1(D_1)$の測定値}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & Zero点 Z[mm]& 直径$D_1 $[mm] & 半径$r_1=(D_1-Z)/2$[mm] & $v_{r_1}$[mm] & $v_{r_1}^2\times 10^4$ [$mm^2$] \\
+    \hline\hline
+    1 & 0.001 & 1.153 & 0.5760 & 0.0026 & 0.067600 \\
+    2 & -0.001 & 1.162 & 0.5815 & 0.0081 & 0.656100 \\
+    3 & -0.001 & 1.150 & 0.5755 & 0.0021 & 0.044100 \\
+    4 & 0.009 & 1.151 & 0.5710 & -0.0024 & 0.057600 \\
+    5 & 0.006 & 1.132 & 0.5630 & -0.0104 & 1.081600 \\
+
+    \hline\hline
+    sum & & & 2.8670 & 0.0000 & 1.9070000 \\
+    \hline
+    ave & & & 0.5734 & &  \\
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+$したがって，r_1の最確値はr_1=0.5734[mm]=0.05734[cm].$\\
+
+$確率誤差r_{r_1}は，理論(1)より，r_{r_1}=\pm0.6745\sqrt{\dfrac{1.907000\times10^{-4}}{5\times4}}=\pm0.002083[mm]=\pm0.0002083[cm].$
+
+\begin{table}[H]
+  \caption{$r_2(D_2)$の測定値}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & Zero点 Z[mm]& 直径$D_2 $[mm] & 半径$r_2=(D_2-Z)/2$[mm] & $v_{r_2}$[mm] & $v_{r_2}^2\times 10^4$ [$mm^2$] \\
+    \hline\hline
+    1 & 0.000 & 1.379 & 0.6895 & -0.0205 & 4.202500 \\
+    2 & -0.001 & 1.399 & 0.7000 & -0.0100 & 1.000000 \\
+    3 & 0.001 & 1.471 & 0.7350 & 0.0250 & 6.250000 \\
+    4 & -0.001 & 1.472 & 0.7365 & 0.0265 & 7.022500 \\
+    5 & 0.000 & 1.378 & 0.6890 & -0.0210 & 4.410000 \\
+    
+
+    \hline\hline
+    sum & & & 3.5500 & 0.0000 & 22.885000 \\
+    \hline
+    ave & & & 0.7100 & &  \\
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+$したがって，r_2の最確値はr_2=0.7100[mm]=0.07100[cm].$\\
+
+$確率誤差r_{r_2}は，理論(1)より，r_{r_2}=\pm0.6745\sqrt{\dfrac{22.88500\times10^{-4}}{5\times4}}=\pm0.007215[mm]=\pm0.0007215[cm].$
+
+\begin{table}[H]
+  \caption{$r_3(D_3)$の測定値}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & Zero点 Z[mm]& 直径$D_3 $[mm] & 半径$r_3=(D_3-Z)/2$[mm] & $v_{r_3}$[mm] & $v_{r_3}^2\times 10^4$ [$mm^2$] \\
+    \hline\hline
+    1 & 0.000 & 1.097 & 0.549 & 0.0005 & 0.002500 \\
+    2 & -0.001 & 1.091 & 0.546 & -0.0020 & 0.040000 \\
+    3 & 0.003 & 1.094 & 0.546 & -0.0025 & 0.062500 \\
+    4 & -0.001 & 1.100 & 0.551 & 0.0025 & 0.062500 \\
+    5 & -0.001 & 1.098 & 0.550 & 0.0015 & 0.022500 \\
+
+    \hline\hline
+    sum & & & 2.7400 & 0.0000 & 0.190000 \\
+    \hline
+    ave & & & 0.5480 & &  \\
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+$したがって，r_3の最確値はr_3=0.5480[mm]=0.05480[cm].$\\
+
+$確率誤差r_{r_3}は，理論(1)より，r_{r_3}=\pm0.6745\sqrt{\dfrac{0.190000\times10^{-4}}{5\times4}}=\pm0.000657[mm]=\pm0.0000657[cm].$
+
+\begin{table}[H]
+  \caption{$r_4(D_4)$の測定値}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & Zero点 Z[mm]& 直径$D_4 $[mm] & 半径$r_4=(D_4-Z)/2$[mm] & $v_{r_4}$[mm] & $v_{r_4}^2\times 10^4$ [$mm^2$] \\
+    \hline\hline
+    1 & 0.001 & 1.159 & 0.5790 & 0.0021 & 0.044100 \\
+    2 & -0.001 & 1.142 & 0.5715 & -0.0054 & 0.291600 \\
+    3 & -0.001 & 1.154 & 0.5775 & 0.0006 & 0.003600 \\
+    4 & 0.000 & 1.152 & 0.5760 & -0.0009 & 0.008100 \\
+    5 & -0.001 & 1.160 & 0.5805 & 0.0036 & 0.129600 \\
+
+    \hline\hline
+    sum & & & 2.8845 & 0.0000 & 0.477000 \\
+
+    \hline
+    ave & & & 0.5769 & &  \\
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+$したがって，r_4の最確値はr_4=0.5769[mm]=0.05769[cm].$\\
+
+$確率誤差r_{r_4}は，理論(1)より，r_{r_4}=\pm0.6745\sqrt{\dfrac{0.477000\times10^{-4}}{5\times4}}=\pm0.001042[mm]=\pm0.0001042[cm].$
+
+\begin{table}[H]
+  \caption{$r_5(D_5)$の測定値}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & Zero点 Z[mm]& 直径$D_5 $[mm] & 半径$r_5=(D_5-Z)/2$[mm] & $v_{r_5}$[mm] & $v_{r_5}^2\times 10^4$ [$mm^2$] \\
+    \hline\hline
+    1 & 0.000 & 1.184 & 0.5920 & 0.0049 & 0.240100 \\
+    2 & 0.000 & 1.171 & 0.5855 & -0.0016 & 0.025600 \\
+    3 & 0.000 & 1.170 & 0.5850 & -0.0021 & 0.044100 \\
+    4 & 0.000 & 1.183 & 0.5915 & 0.0044 & 0.193600 \\
+    5 & 0.003 & 1.166 & 0.5815 & -0.0056 & 0.313600 \\
+
+
+    \hline\hline
+    sum & & & 2.9355 & 0.0000 & 0.817000 \\
+    \hline
+    ave & & & 0.5871 & &  \\
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+$したがって，r_5の最確値はr_5=0.5871[mm]=0.05871[cm].$\\
+
+$確率誤差r_{r_5}は，理論(1)より，r_{r_5}=\pm0.6745\sqrt{\dfrac{0.817000\times10^{-4}}{5\times4}}=\pm0.001363[mm]=\pm0.0001363[cm].$
+
+
+\begin{table}[H]
+  \caption{$t_1〜t_5$の測定値}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & $t_1[sec]$ & $t_2[sec]$ & $t_3[sec]$ & $t_4[sec]$ & $t_5[sec]$ \\
+
+    \hline\hline
+    1 & 14.44 & 9.56 & 15.77 & 14.38 & 13.70 \\
+    2 & 14.47 & 9.53 & 15.80 & 14.67 & 13.60 \\
+    3 & 14.34 & 9.59 & 15.59 & 14.12 & 13.90 \\
+    4 & 14.39 & 9.50 & 15.70 & 14.22 & 13.69 \\
+    5 & 14.11 & 9.60 & 15.70 & 14.26 & 13.65 \\
+
+    \hline\hline
+    sum & 71.75 & 47.78 & 78.56 & 71.65 & 68.54 \\
+    \hline
+    ave & 14.35 & 9.56 & 15.71 & 14.33 & 13.71 \\
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+$したがってt_1〜t_5の最確値は，$\\
+
+$t_1=14.35[sec].$\\
+
+$t_2=9.56[sec].$\\
+
+$t_3=15.71[sec].$\\
+
+$t_4=14.33[sec].$\\
+
+$t_5=13.71[sec].$\\
+
+\begin{table}[H]
+  \caption{$t_1〜t_5$の残差}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & $v_{t_1}[sec]$ & $v_{t_2}[sec]$ & $v_{t_3}[sec]$ & $v_{t_4}[sec]$ & $v_{t_5}[sec]$　\\
+
+    \hline\hline
+    1 & 0.090 & 0.004 & 0.058 & 0.050 & -0.008 \\
+    2 & 0.120 & -0.026 & 0.088 & 0.340 & -0.108 \\
+    3 & -0.010 & 0.034 & -0.122 & -0.210 & 0.192 \\
+    4 & 0.040 & -0.056 & -0.012 & -0.110 & -0.018 \\
+    5 & -0.240 & 0.044 & -0.012 & -0.070 & -0.058 \\
+
+
+    \hline\hline
+    sum & 0.000 & 0.000 & 0.000 & 0.000 & 0.000 \\
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+\begin{table}[H]
+  \caption{$t_1〜t_5$の残差の2乗}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & $v_{t_1}^2[sec^2]$ & $v_{t_2}^2[sec^2]$ & $v_{t_3}^2[sec^2]$ & $v_{t_4}^2[sec^2]$ & $v_{t_5}^2[sec^2]$ \\
+
+    \hline\hline
+    1 & 81.000 & 0.160 & 33.640 & 25.000 & 0.640 \\
+    2 & 144.000 & 6.760 & 77.440 & 1156.000 & 116.640 \\
+    3 & 1.000 & 11.560 & 148.840 & 441.000 & 368.640 \\
+    4 & 16.000 & 31.360 & 1.440 & 121.000 & 3.240 \\
+    5 & 576.000 & 19.360 & 1.440 & 49.000 & 33.640 \\
+
+    \hline\hline
+    sum & 818.000 & 69.20 & 262.80 & 1767.00 & 522.80 \\
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+$確率誤差r_{t_1}〜r_{t_5}は，理論(1)より，$\\
+
+$r_{t_1}=\pm0.6745\sqrt{\dfrac{818.000\times10^{-4}}{5\times4}}=\pm0.0431[sec].$\\
+
+$r_{t_2}=\pm0.6745\sqrt{\dfrac{69.20\times10^{-4}}{5\times4}}=\pm0.0125[sec].$\\
+
+$r_{t_3}=\pm0.6745\sqrt{\dfrac{262.80\times10^{-4}}{5\times4}}=\pm0.0245[sec].$\\
+
+$r_{t_4}=\pm0.6745\sqrt{\dfrac{1767.00\times10^{-4}}{5\times4}}=\pm0.0634[sec].$\\
+
+$r_{t_5}=\pm0.6745\sqrt{\dfrac{522.80\times10^{-4}}{5\times4}}=\pm0.0345[sec].$\\
+
+\begin{table}[H]
+  \caption{距離Hの測定値}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & H[mm] & $v_H[mm]$ & $v_H^2[mm^2]$ \\
+
+    \hline\hline
+    1 & 112.60 & -0.240 & 576.000000 \\
+    2 & 112.75 & -0.090 & 81.000000 \\
+    3 & 112.75 & -0.090 & 81.000000 \\
+    4 & 113.10 & 0.260 & 676.000000 \\
+    5 & 113.00 & 0.160 & 256.000000 \\
+
+    \hline\hline
+    sum & 564.20 & 0.000 & 1670.000000 \\
+    \hline
+    ave & 112.84 & &  \\
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+$したがって，Hの最確値はH=112.84[mm]=11.284[cm].$\\
+
+$確率誤差r_Hは，理論(1)より，r_H=\pm0.6745\sqrt{\dfrac{1670.000000\times10^{-4}}{5\times4}}=\pm0.061635[mm]=\pm0.0061635[cm].$
+
+\begin{table}[H]
+  \caption{小球5個の質量Mの測定値}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & M[g] & $v_M[g]$ & $v_M^2[g^2]$ \\
+
+    \hline\hline
+    1 & 0.01328 & -0.00022 & 0.048400 \\
+    2 & 0.01343 & -0.00007 & 0.004900 \\
+    3 & 0.01350 & 0.00000 & 0.000000 \\
+    4 & 0.01361 & 0.00011 & 0.012100 \\
+    5 & 0.01368 & 0.00018 & 0.032400 \\
+
+    \hline\hline
+    sum & 0.06750 & 0.05400 & 0.097800 \\
+    \hline
+    ave & 0.01350 &  &  \\
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+$したがって，Mの最確値はM=0.01350[g].$\\
+
+$確率誤差r_Mは，理論(1)より，r_M=\pm0.6745\sqrt{\dfrac{0.097800\times10^{-4}}{5\times4}}=\pm0.00004717[g].$
+
+
+\begin{table}[H]
+  \caption{液体の密度$\rho $の測定値}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & $浮上時\rho _1[g/cm^3]$ & $沈下時\rho _2[g/cm^3]$ & $\rho((\rho _1+\rho _2)/2) [g/cm^3]$ & $v_\rho [g/cm^3]$ & $v_\rho ^2[g^2/cm^6]$ \\
+
+    \hline\hline
+    1 & 0.8770 & 0.8761 & 0.8766 & 0.0002 & 0.000625 \\
+    2 & 0.8769 & 0.8760 & 0.8765 & 0.0001 & 0.000225 \\
+    3 & 0.8769 & 0.8760 & 0.8765 & 0.0001 & 0.000225 \\
+    4 & 0.8768 & 0.8758 & 0.8763 & 0.0000 & 0.000000 \\
+    5 & 0.8760 & 0.8755 & 0.8758 & -0.0005 & 0.003025 \\
+
+
+    \hline\hline
+    sum & & & 4.3815 & 0.0000 & 0.004100 \\
+
+    \hline
+    ave & & & 0.8763 &  &  \\
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+$したがって，\rho の最確値はM=0.8763[g/cm^3].$\\
+
+$確率誤差r_\rho は，理論(1)より，r_\rho =\pm0.6745\sqrt{\dfrac{0.004100\times10^{-4}}{5\times4}}=\pm0.00009657370307[g/cm^3].$\\
+
+
+
+
+
+\clearpage
+
+\subsection*{物体の密度}
+$まず，体積Vを求める．V=\dfrac{4}{3}\pi (r_1^3+r_2^3+r_3^3+r_4^3+r_5^3)より，$\\
+
+$Vの最確値はV=\dfrac{4}{3}\pi (0.05734^3+0.07100^3+0.05480^3+0.05769^3+0.05871^3)=0.004630158874[cm^3].$\\
+
+$確率誤差r_Vは，\dfrac{\partial V}{\partial r_i}=4\pi r_i^2より，$\\
+
+$r_V^2=\sum_{n = 1}^{5}(\dfrac{\partial V}{\partial r_i}r_{r_i})^2=16\pi ^2\sum_{n = 1}^{5}(r_i^2r_{r_i})^2$\\
+
+$=16\pi ^2((0.000006847904261)^2+(0.00003637132411)^2+(0.000001974262396)^2+(0.000003466787513)^2+(0.000004698964297)^2)$\\
+
+$=0.0000002223047422[cm^6]$\\
+
+$\therefore r_V=\pm0.0004714920383[cm^3].$\\
+
+$物体の密度\sigma を求める．\sigma =\dfrac{M}{V}より，$\\
+
+$最確値\sigma は\sigma =\dfrac{0.01350}{0.004630158874}=2.91566669[g/cm^3].$\\
+
+$確率誤差r_\sigma は，\dfrac{\partial \sigma }{\partial M}=\dfrac{1}{V},\dfrac{\partial \sigma }{\partial V}=-\dfrac{M}{V^2}=-\dfrac{\sigma }{V}より，$\\
+
+$r_\sigma ^2=(\dfrac{\partial \sigma }{\partial M}r_M)^2+(\dfrac{\partial \sigma }{\partial V}r_V)^2=(0.01018686358)^2+(0.2969042031)^2=0.08825587802[g^2/cm^6]$\\
+
+$\therefore r_\sigma =\pm0.2970789087[g/cm^3].$
+
+
+\subsection*{落下速度}
+$各小球の落下速度\nu _1〜\nu _5の最確値および確率誤差を求める．$\\
+
+$\nu =\dfrac{H}{t}より，\dfrac{\partial \nu }{\partial H}=\dfrac{1}{t},\dfrac{\partial \nu }{\partial t}=-\dfrac{H}{t^2}=-\dfrac{\nu }{t}.これを用いて，\nu _1〜\nu _5の最確値および確率誤差を求める．$\\
+
+$\nu _1=\dfrac{H}{t_1}=\dfrac{11.2840}{14.35}=0.7863414634[cm/sec].$\\
+
+$\nu _2=\dfrac{H}{t_2}=\dfrac{11.2840}{9.56}=1.180828799[cm/sec].$\\
+
+$\nu _3=\dfrac{H}{t_3}=\dfrac{11.2840}{15.71}=0.7181771894[cm/sec].$\\
+
+$\nu _4=\dfrac{H}{t_4}=\dfrac{11.2840}{14.33}=0.7874389393[cm/sec].$\\
+
+$\nu _5=\dfrac{H}{t_5}=\dfrac{11.2840}{13.71}=0.8231689524[cm/sec].$\\
+
+$r_{\nu _1}^2=(\dfrac{\partial \nu _1}{\partial H}r_H)^2+(\dfrac{\partial \nu _1}{\partial t_1}r_{t_1})^2=(0.004295100109)^2+(0.002363757301)^2=0.00002403523352[(cm/sec)^2].$\\
+
+$\therefore r_{\nu _1}=0.004902574173[cm/sec].$\\
+
+$r_{\nu _2}^2=(\dfrac{\partial \nu _2}{\partial H}r_H)^2+(\dfrac{\partial \nu _2}{\partial t_2}r_{t_2})^2=(0.006449841624)^2+(0.001550353731)^2=0.00004400405367[(cm/sec)^2].$\\
+
+$\therefore r_{\nu _2}=0.00663355513[cm/sec].$\\
+
+$r_{\nu _3}^2=(\dfrac{\partial \nu _3}{\partial H}r_H)^2+(\dfrac{\partial \nu _3}{\partial t_3}r_{t_3})^2=(0.003922777913)^2+(0.001117582965)^2=0.00001663717823[(cm/sec)^2].$\\
+
+$\therefore r_{\nu _3}=0.004078869725[cm/sec].$\\
+
+$r_{\nu _4}^2=(\dfrac{\partial \nu _4}{\partial H}r_H)^2+(\dfrac{\partial \nu _4}{\partial t_4}r_{t_4})^2=(0.004301094666)^2+(0.003483821761)^2=0.00003063642939[(cm/sec)^2].$\\
+
+$\therefore r_{\nu _4}=0.005535018463[cm/sec].$\\
+
+$r_{\nu _5}^2=(\dfrac{\partial \nu _5}{\partial H}r_H)^2+(\dfrac{\partial \nu _5}{\partial t_5}r_{t_5})^2=(0.004496256679)^2+(0.002070854717)^2=0.00002450476339[(cm/sec)^2].$\\
+
+$\therefore r_{\nu _5}=0.00495022862[cm/sec].$\\
+
+
+
+\subsection*{粘性係数}
+$上記の\nu _1〜\nu _5に対して，それぞれ粘性係数\eta _1〜\eta _5の最確値および確率誤差を求める．$\\
+
+理論(7)より，\\
+
+$\eta _1=\dfrac{r_1^2(\sigma -\rho )}{\nu _1}=1.856451736[g/(cm\cdot sec)].$\\
+
+$\eta _2=\dfrac{r_2^2(\sigma -\rho )}{\nu _2}=1.895436429[g/(cm\cdot sec)].$\\
+
+$\eta _3=\dfrac{r_3^2(\sigma -\rho )}{\nu _3}=1.856559927[g/(cm\cdot sec)].$\\
+
+$\eta _4=\dfrac{r_4^2(\sigma -\rho )}{\nu _4}=1.876565177[g/(cm\cdot sec)].$\\
+
+$\eta _5=\dfrac{r_5^2(\sigma -\rho )}{\nu _5}=1.859150900[g/(cm\cdot sec)].$\\
+
+$また，\dfrac{\partial \eta }{\partial r}=\dfrac{4}{9}g\dfrac{r(\sigma -\rho  )}{\nu },\dfrac{\partial \eta }{\partial \nu }=-\dfrac{2}{9}g\dfrac{r^2(\sigma -\rho  )}{\nu^2 },\dfrac{\partial \eta }{\partial \sigma }=\dfrac{2}{9}g\dfrac{r^2}{\nu },\dfrac{\partial \eta }{\partial \rho }=-\dfrac{2}{9}g\dfrac{r^2}{\nu }より，$\\
+
+$r_{\eta _1}^2=(\dfrac{\partial \eta _1}{\partial r_1}r_{r_1})^2+(\dfrac{\partial \eta _1}{\partial \nu _1}r_{\nu _1})^2+(\dfrac{\partial \eta _1}{\partial \sigma }r_\sigma)^2+(\dfrac{\partial \eta _1}{\partial \rho }r_\rho )^2$\\
+
+$=(0.1348646944)^2+(0.0115743513)^2+(0.270433296)^2+(0.00008791181085)^2$\\
+
+$=0.09145662674[(g/(cm\cdot sec))^2].$\\
+
+$\therefore r_{\eta _1}=0.302417967[g/(cm\cdot sec)].$\\
+
+$r_{\eta _2}^2=(\dfrac{\partial \eta _2}{\partial r_2}r_{r_2})^2+(\dfrac{\partial \eta _2}{\partial \nu _2}r_{\nu _2})^2+(\dfrac{\partial \eta _2}{\partial \sigma }r_\sigma)^2+(\dfrac{\partial \eta _2}{\partial \rho }r_\rho )^2$\\
+
+$=(0.3852328243)^2+(0.0106480144)^2+(0.2761122796)^2+(0.00008975792129)^2$\\
+
+$=0.2247557081[(g/(cm\cdot sec))^2].$\\
+
+$\therefore r_{\eta _2}=0.4740840729[g/(cm\cdot sec)].$\\
+
+$r_{\eta _3}^2=(\dfrac{\partial \eta _3}{\partial r_3}r_{r_3})^2+(\dfrac{\partial \eta _3}{\partial \nu _3}r_{\nu _3})^2+(\dfrac{\partial \eta _3}{\partial \sigma }r_\sigma)^2+(\dfrac{\partial \eta _3}{\partial \rho }r_\rho )^2$\\
+
+$=(0.04454532849)^2+(0.01054428655)^2+(0.2704490564)^2+(0.00008791693418)^2$\\
+
+$=0.07523816809[(g/(cm\cdot sec))^2].$\\
+
+$\therefore r_{\eta _3}=0.2742957675[g/(cm\cdot sec)].$\\
+
+$r_{\eta _4}^2=(\dfrac{\partial \eta _4}{\partial r_4}r_{r_4})^2+(\dfrac{\partial \eta _4}{\partial \nu _4}r_{\nu _4})^2+(\dfrac{\partial \eta _4}{\partial \sigma }r_\sigma)^2+(\dfrac{\partial \eta _4}{\partial \rho }r_\rho )^2$\\
+
+$=(0.0677671553)^2+(0.01319063915)^2+(0.273363264)^2+(0.00008886427785)^2$\\
+
+$=0.07949386231[(g/(cm\cdot sec))^2].$\\
+
+$\therefore r_{\eta _4}=0.2819465593[g/(cm\cdot sec)].$\\
+
+$r_{\eta _5}^2=(\dfrac{\partial \eta _5}{\partial r_5}r_{r_5})^2+(\dfrac{\partial \eta _5}{\partial \nu _5}r_{\nu _5})^2+(\dfrac{\partial \eta _5}{\partial \sigma }r_\sigma)^2+(\dfrac{\partial \eta _5}{\partial \rho }r_\rho )^2$\\
+
+$=(0.08633970111)^2+(0.01118023459)^2+(0.270826489)^2+(0.00008803962908)^2$\\
+
+$=0.08092653653[(g/(cm\cdot sec))^2].$\\
+
+$\therefore r_{\eta _5}=0.284475898[g/(cm\cdot sec)].$\\
+
+$\eta _1〜\eta _5の最確値および確率誤差をまとめた表が以下である．$
+
+\begin{table}[H]
+  \caption{液体の密度$\rho $の測定値}
+  \label{table:SpeedOfLight}
+  \centering
+  \begin{tabular}{|c||r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    n & $\eta _i$ & $r_{\eta _i}$ & $\omega _i=1/r_{\eta _i}^2$ & $\omega _i\eta _i$ \\
+      & $[g/cm\cdot sec]$ & $[g/cm\cdot sec]$ & $[(g/cm\cdot sec)^{-2}]$ & $[(g/cm\cdot sec)^{-1}]$\\
+
+    \hline\hline
+    1 & 1.856451736 & 0.302417967 & 10.9341448 & 20.2987121 \\
+    2 & 1.895436429 & 0.4740840729 & 4.449275208 & 8.433318311 \\
+    3 & 1.856559927 & 0.2742957675 & 13.29112637 & 24.6757726 \\
+    4 & 1.876565177 & 0.2819465593 & 12.57958754 & 23.60641593 \\
+    5 & 1.859150900 & 0.284475898 & 12.35688617 & 22.97331604 \\
+
+
+    \hline\hline
+    sum & 9.344164169 & 1.6172 & 53.61102009 & 99.98753498 \\
+
+
+    \hline
+  \end{tabular}
+
+
+\end{table}
+
+$表12より，\eta の価値平均をとる．$\\
+
+$\eta =\dfrac{\sum \omega _i\eta _i}{\sum \omega _i}=\dfrac{99.98753498}{53.61102009}=1.865055632[g/cm\cdot sec].$\\
+
+$r_\eta =\pm \sqrt{\dfrac{1}{\sum \omega _i}}=\pm \sqrt{\dfrac{1}{53.61102009}}=\pm 0.136575552[g/cm\cdot sec].$\\
+
+$\eta =1.865055632\pm0.136575552=1.865\pm0.137[g/cm\cdot sec].$
+
+
+\section{考察}
+
+$表12の\eta _1〜\eta _5の最確値に着目すると，\eta _2と\eta _4が他に比べ大きかったが，\eta _2 に関しては確率誤差も他に比べ大きかったため，価値平均にはあまり大きな影響がなかった．一方で，\eta _4は重みが他と度程度であったため，平均に影響を及ぼした．このようになった原因としては，表8からわかるように，t_4の計測で軽微な測定のズレ(観測者による誤差)が混じった可能性などが挙げられる．$\\
+
+
+
+
+
+
+\end{document}
